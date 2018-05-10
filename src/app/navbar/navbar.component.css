@@ -7,3 +7,6 @@
   font-family: camper;
   color: #dc3545;
 }
+.navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
+  color: #dc3545;
+}
