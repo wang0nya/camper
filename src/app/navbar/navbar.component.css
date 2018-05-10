@@ -1,0 +1,9 @@
+/*custom font*/
+@font-face {
+  font-family: camper;
+  src: url('../../assets/css/fonts/camp-granada-nf/CampGranadaNF.ttf');
+}
+.navbar-brand{
+  font-family: camper;
+  color: #dc3545;
+}
