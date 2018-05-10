@@ -14,6 +14,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FeedComponent } from './feed/feed.component';
 import { RatedComponent } from './rated/rated.component';
 
+import {FormsModule} from '@angular/forms';
+
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {environment} from '../environments/environment';
+
+import {AuthService} from '../services/auth.service';
+
 const appRoutes: Routes = [
   { path: 'campgrounds/:id', component: CampgroundDetailsComponent },
   {
@@ -72,12 +80,15 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule, // for database
+    FormsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
