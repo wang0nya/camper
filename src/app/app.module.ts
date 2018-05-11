@@ -23,6 +23,7 @@ import {environment} from '../environments/environment';
 
 import {AuthService} from '../services/auth.service';
 import { AddComponent } from './add/add.component';
+import { InterceptComponent } from './intercept/intercept.component';
 
 const appRoutes: Routes = [
   { path: 'campgrounds/:id', component: CampgroundDetailsComponent },
@@ -34,6 +35,10 @@ const appRoutes: Routes = [
   {
     path: 'add',
     component: AddComponent
+  },
+  {
+    path: 'intercept',
+    component: InterceptComponent
   },
   {
     path: 'login',
@@ -88,7 +93,8 @@ const appRoutes: Routes = [
     FeedComponent,
     RatedComponent,
     ResetPasswordComponent,
-    AddComponent
+    AddComponent,
+    InterceptComponent
   ],
   imports: [
     BrowserModule,
