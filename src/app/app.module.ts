@@ -14,13 +14,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FeedComponent } from './feed/feed.component';
 import { RatedComponent } from './rated/rated.component';
 
-import {FormsModule} from '@angular/forms';
-
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {environment} from '../environments/environment';
 
-import {AuthService} from '../services/auth.service';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const appRoutes: Routes = [
   { path: 'campgrounds/:id', component: CampgroundDetailsComponent },
@@ -36,6 +34,10 @@ const appRoutes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'reset',
+    component: ResetPasswordComponent
   },
   {
     path: 'profile',
@@ -76,19 +78,19 @@ const appRoutes: Routes = [
     WelcomeComponent,
     NavbarComponent,
     FeedComponent,
-    RatedComponent
+    RatedComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
-    FormsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [AuthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

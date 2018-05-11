@@ -1,3 +1,14 @@
 html, body{
   font-family: 'Nanum Gothic', sans-serif;
 }
+/*custom font*/
+@font-face {
+  font-family: camper;
+  src: url('../../assets/css/fonts/camp-granada-nf/CampGranadaNF.ttf');
+}
+.brand{
+  font-family: camper;
+  color: #dc3545;
+  font-size: 70px;
+  font-weight: 700;
+}

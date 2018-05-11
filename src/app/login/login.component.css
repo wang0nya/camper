@@ -1,0 +1,29 @@
+form {
+padding-top: 30px;
+}
+.brand{
+  padding-top: 150px;
+}
+.overlay {
+  position: fixed; /* Sit on top of the page content */
+  /*display: none; !* Hidden by default *!*/
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 0; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+.hero {
+  width:100%;
+  height:100vh;
+  background: url('../../assets/img/landscape-sea-nature-ocean-wilderness-light-1071666-pxhere.com.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:cover;
+  background-attachment: fixed;
+  z-index: 1;
+}
