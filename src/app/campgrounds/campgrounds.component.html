@@ -2,7 +2,11 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-      <p>camps here</p>
+      <div *ngFor="let camp of camps">
+        <h4>{{camp.name}}</h4>
+        <img src="{{camp.imageurl}}" alt="">
+        <p>{{camp.description}}</p>
+      </div>
     </div>
   </div>
 </div>

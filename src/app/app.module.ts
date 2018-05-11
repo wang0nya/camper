@@ -25,6 +25,8 @@ import {AuthService} from '../services/auth.service';
 import { AddComponent } from './add/add.component';
 import { InterceptComponent } from './intercept/intercept.component';
 
+import {CampsService} from '../services/camps.service';
+
 const appRoutes: Routes = [
   { path: 'campgrounds/:id', component: CampgroundDetailsComponent },
   {
@@ -107,7 +109,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [AuthService],
+  providers: [AuthService,CampsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
