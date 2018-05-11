@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import {environment} from '../environments/environment';
 
 import {AuthService} from '../services/auth.service';
+import { AddComponent } from './add/add.component';
 
 const appRoutes: Routes = [
   { path: 'campgrounds/:id', component: CampgroundDetailsComponent },
@@ -29,6 +30,10 @@ const appRoutes: Routes = [
     path: 'campgrounds',
     component: CampgroundsComponent,
     data: { title: 'Campgrounds List' }
+  },
+  {
+    path: 'add',
+    component: AddComponent
   },
   {
     path: 'login',
@@ -82,7 +87,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     FeedComponent,
     RatedComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    AddComponent
   ],
   imports: [
     BrowserModule,
