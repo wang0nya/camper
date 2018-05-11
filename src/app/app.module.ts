@@ -13,12 +13,15 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FeedComponent } from './feed/feed.component';
 import { RatedComponent } from './rated/rated.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { FormsModule } from '@angular/forms';
 import {environment} from '../environments/environment';
 
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import {AuthService} from '../services/auth.service';
 
 const appRoutes: Routes = [
   { path: 'campgrounds/:id', component: CampgroundDetailsComponent },
@@ -85,12 +88,14 @@ const appRoutes: Routes = [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
+    FormsModule,
+    AngularFireAuthModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
