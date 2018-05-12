@@ -1,14 +1,15 @@
-html, body{
-  font-family: 'Nanum Gothic', sans-serif;
-}
 /*custom font*/
 @font-face {
-  font-family: camper;
-  src: url('../../assets/css/fonts/camp-granada-nf/CampGranadaNF.ttf');
+  font-family: 'themify';
+  src:url('../../assets/css/fonts/themify.eot');
+  src:url('../../assets/css/fonts/themify.eot?#iefix') format('embedded-opentype'),
+  url('../../assets/css/fonts/themify.woff') format('woff'),
+  url('../../assets/css/fonts/themify.ttf') format('truetype'),
+  url('fonts/themify.svg') format('svg');
+}
+.mainNav {
+  margin : 100px !important;
 }
 .brand{
-  font-family: camper;
   color: #dc3545;
-  font-size: 70px;
-  font-weight: 700;
 }

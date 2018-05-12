@@ -13,9 +13,13 @@
               <label for="password" class="text-light">Password</label>
               <input type="password" class="form-control" id="password" placeholder="Password" minlength="8" required (ngModel)="password" name="password">
             </div>
-            <button type="submit" class="btn btn-danger btn-block">Login</button>
-            <button (click)="google()" class="btn btn-primary btn-block">Google Login</button>
+            <button type="submit" class="btn btn-primary btn-round btn-block">Login</button>
+            <button (click)="google()" class="btn btn-info btn-round btn-block">Google Login</button>
           </form>
+          <hr>
+          <div class="text-center">
+            <a routerLink="/register">Register</a>
+          </div>
         </div>
       </div>
     </div>
