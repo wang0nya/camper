@@ -1,30 +1,36 @@
 <app-navbar></app-navbar>
-<h3>Create Camp</h3>
-<div [hidden]="submitted" style="width: 300px;">
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="name">Name</label> <input type="text"
-                                            class="form-control" id="name" required [(ngModel)]="camp.name"
-                                            name="name">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h3>Create Camp</h3>
+      <div [hidden]="submitted" style="width: 300px;">
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="name">Name</label> <input type="text"
+                                                  class="form-control" id="name" required [(ngModel)]="camp.name"
+                                                  name="name">
+          </div>
+
+          <div class="form-group">
+            <label for="imageurl">Image Url</label> <input type="text"
+                                                           class="form-control" id="imageurl" required [(ngModel)]="camp.imageurl"
+                                                           name="imageurl">
+          </div>
+
+          <div class="form-group">
+            <label for="description">Desc</label> <textarea class="form-control" rows="4"
+                                                            placeholder="Give us some details" id="description" required [(ngModel)]="camp.description"
+                                                            name="description"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-success btn-round">Submit</button>
+        </form>
+      </div>
+
+      <div [hidden]="!submitted">
+        <h4>You submitted successfully!</h4>
+        <button class="btn btn-info btn-round" (click)="newCamp()">Add</button>
+      </div>
     </div>
-
-    <div class="form-group">
-      <label for="imageurl">Image Url</label> <input type="text"
-                                          class="form-control" id="imageurl" required [(ngModel)]="camp.imageurl"
-                                          name="imageurl">
-    </div>
-
-    <div class="form-group">
-      <label for="description">Desc</label> <input type="text"
-                                          class="form-control" id="description" required [(ngModel)]="camp.description"
-                                          name="description">
-    </div>
-
-    <button type="submit" class="btn btn-success">Submit</button>
-  </form>
-</div>
-
-<div [hidden]="!submitted">
-  <h4>You submitted successfully!</h4>
-  <button class="btn btn-success" (click)="newCamp()">Add</button>
+  </div>
 </div>
