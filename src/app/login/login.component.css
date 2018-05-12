@@ -27,3 +27,9 @@ padding-top: 30px;
   background-attachment: fixed;
   z-index: 1;
 }
+.register{
+  margin-right: 35px;
+}
+.reset{
+  margin-left: 35px;
+}
