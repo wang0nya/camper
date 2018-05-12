@@ -1,22 +1,12 @@
 <app-navbar></app-navbar>
 <div class="container">
   <div class="row">
-    <div *ngFor="let camp of camps" class="camps">
-      <div class="col-md-8">
-        <div class="card">
-          <img src="{{camp.imageurl}}" class="img-fluid" routerLink="/campgrounds/:id"/>
-            <div class="campContainer">
-              <div class="header">
-                <h5>{{camp.name}}<span><i class="far fa-heart fa-fw"></i>
-                  <i class="far fa-comments fa-fw"></i>
-                </span></h5>
-              </div>
-              <p>{{camp.description}}</p>
-              <hr>
-              <form>
-                <input type="text" placeholder="Add a comment">
-              </form>
-            </div>
+    <div *ngFor="let camp of camps" class="campsContainer col-md-4 col-sm-6">
+      <div class="camps">
+        <img src="{{camp.imageurl}}" class="img-fluid" routerLink="/campgrounds/:id"/>
+        <div class="info">
+          <h5>{{camp.name}}</h5>
+          <p>{{camp.description}}</p>
         </div>
       </div>
     </div>
