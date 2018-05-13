@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-login',
@@ -29,15 +30,17 @@ confirm: any;
   }
   login(email: string, password: string) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .then(value => {
-        if (value.emailVerified) {
-          this.router.navigateByUrl('/campgrounds');
-        } else {
-          // Tell the user to have a look at its mailbox
-          console.log('look at your mail');
-          this.confirm = 'Looks like you have not confirmed your email yet. Have a look at your email for a verification email we sent.';
-        }
-      })
+      .then(
+        firebase.auth().onAuthStateChanged((user) => {
+          if (user.emailVerified) {
+            console.log(user.emailVerified);
+            this.router.navigateByUrl('/campgrounds');
+          } else {
+            this.confirm = 'Looks like you have not verified your email yet. Take a look at your email for a verification email we sent.';
+            console.log('look at your mail', user.emailVerified);
+          }
+        })
+      )
       .catch(err => {
         console.log('Something went wrong: ', err.message);
         this.error = err.message;
