@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-register',
@@ -24,6 +25,10 @@ export class RegisterComponent implements OnInit {
   emailSignup(email: string, password: string) {
     this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then(value => {
+        firebase
+          .database()
+          .ref('/userProfiles')
+          .push({ email: email });
         this.sendEmailVerification();
         console.log('Success', value);
         // this.router.navigateByUrl('/campgrounds');
