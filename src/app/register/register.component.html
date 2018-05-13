@@ -15,6 +15,9 @@
             </div>
             <button type="submit" class="btn btn-primary btn-round btn-block">Register</button>
           </form>
+          <br>
+          <div *ngIf="this.registerSuccess" class="alert alert-info alert-dismissible fade show" [innerHtml]="registerSuccess"></div>
+          <div *ngIf="this.registerError" class="alert alert-warning alert-dismissible fade show" [innerHtml]="registerError"></div>
           <hr>
           <div class="text-center">
             <a routerLink="/login">Login</a>

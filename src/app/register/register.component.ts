@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-register',
@@ -7,16 +8,39 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  constructor(private authService: AuthService) { }
+  registerSuccess: any;
+  registerError: any;
+  constructor(private authService: AuthService, private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
   }
   onSubmit(formData) {
       console.log(formData.value);
-      this.authService.emailSignup(
+      this.emailSignup(
         formData.value.email,
         formData.value.password
       );
+  }
+  emailSignup(email: string, password: string) {
+    this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+      .then(value => {
+        this.sendEmailVerification();
+        console.log('Success', value);
+        // this.router.navigateByUrl('/campgrounds');
+      })
+      .catch(error => {
+        console.log('Something went wrong: ', error);
+        this.registerError = error.message;
+      });
+  }
+
+  sendEmailVerification() {
+    this.afAuth.authState.subscribe(user => {
+      user.sendEmailVerification()
+        .then(() => {
+          console.log('email sent');
+          this.registerSuccess = 'Check your email for a verification email.';
+        });
+    });
   }
 }

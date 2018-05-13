@@ -14,8 +14,11 @@
               <input type="password" class="form-control" id="password" placeholder="Password" minlength="8" required (ngModel)="password" name="password">
             </div>
             <button type="submit" class="btn btn-primary btn-round btn-block">Login</button>
-            <button (click)="google()" class="btn btn-info btn-round btn-block">Google Login</button>
           </form>
+          <br>
+          <div *ngIf="this.error" class="alert alert-warning alert-dismissible fade show" [innerHtml]="error"></div>
+            <div *ngIf="this.confirm" class="alert alert-info alert-dismissible fade show" [innerHtml]="confirm">
+          </div>
           <hr>
           <div class="text-center">
             <span class="register"><a routerLink="/register">Register</a></span>
