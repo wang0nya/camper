@@ -14,7 +14,9 @@ export class CampsService {
   }
 
   createCamp(camp: Camp): void {
-    this.campsRef.push(camp);
+    this.campsRef.push(camp).then(newCamp => {
+      console.log('new camp created with key:', newCamp.key);
+    });
   }
 
   updateCamp(key: string, value: any): void {
