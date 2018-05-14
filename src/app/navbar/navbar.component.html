@@ -21,7 +21,13 @@
           <a class="nav-link" routerLink="/profile" routerLinkActive="active" *ngIf="user">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/add" routerLinkActive="active"><button class="btn btn-sm btn-round btn-success my-2 my-sm-0">Add Campground</button></a>
+          <a class="nav-link" routerLink="/add" routerLinkActive="active"><button class="btn btn-sm btn-round btn-success my-2 my-sm-0" *ngIf="user">Add Campground</button></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active"><button class="btn btn-sm btn-round btn-info my-2 my-sm-0" *ngIf="!user">Login</button></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register" routerLinkActive="active"><button class="btn btn-sm btn-round btn-warning my-2 my-sm-0" *ngIf="!user">Register</button></a>
         </li>
       </ul>
     </div>
