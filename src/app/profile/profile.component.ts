@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-profile',
@@ -7,12 +8,20 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+userEmail: any;
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.checkUser();
   }
   logout() {
     this.authService.logout();
+  }
+  checkUser() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.userEmail = user.email;
+      }
+    });
   }
 }
