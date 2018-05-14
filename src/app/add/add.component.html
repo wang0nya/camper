@@ -4,23 +4,28 @@
     <div class="col-md-6 mx-auto">
       <h3>Create Camp</h3>
       <div [hidden]="submitted" style="width: 300px;">
-        <form (ngSubmit)="onSubmit()">
+        <form #formData='ngForm' (ngSubmit)='onSubmit(formData)'>
           <div class="form-group">
             <label for="name">Name</label> <input type="text"
-                                                  class="form-control" id="name" required [(ngModel)]="camp.name"
+                                                  class="form-control" id="name" required [(ngModel)]="name"
                                                   name="name">
           </div>
 
           <div class="form-group">
             <label for="imageurl">Image Url</label> <input type="text"
-                                                           class="form-control" id="imageurl" required [(ngModel)]="camp.imageurl"
+                                                           class="form-control" id="imageurl" required [(ngModel)]="imageurl"
                                                            name="imageurl">
           </div>
 
           <div class="form-group">
             <label for="description">Desc</label> <textarea class="form-control" rows="4"
-                                                            placeholder="Give us some details" id="description" required [(ngModel)]="camp.description"
+                                                            placeholder="Give us some details" id="description" required [(ngModel)]="description"
                                                             name="description"></textarea>
+          </div>
+
+          <div class="form-group" hidden>
+            <label for="poster"></label> <input id="poster" [(ngModel)]="postedBy"
+                                                            name="postedBy">
           </div>
 
           <button type="submit" class="btn btn-success btn-round">Submit</button>

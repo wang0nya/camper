@@ -13,12 +13,6 @@ export class CampsService {
     this.campsRef = db.list(this.dbPath);
   }
 
-  createCamp(camp: Camp): void {
-    this.campsRef.push(camp).then(newCamp => {
-      console.log('new camp created with key:', newCamp.key);
-    });
-  }
-
   updateCamp(key: string, value: any): void {
     this.campsRef.update(key, value).catch(error => this.handleError(error));
   }
