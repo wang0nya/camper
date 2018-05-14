@@ -1,5 +1,5 @@
 <div class="mainNav" xmlns="">
-  <nav class="navbar navbar-expand-md navbar-default fixed-top">
+  <nav class="navbar navbar-expand-md navbar-light fixed-top">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       <span class="navbar-toggler-icon"></span>
@@ -18,7 +18,7 @@
           <a class="nav-link" routerLink="/top-rated" routerLinkActive="active">Top Rated</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/profile" routerLinkActive="active">Profile</a>
+          <a class="nav-link" routerLink="/profile" routerLinkActive="active" *ngIf="user">Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/add" routerLinkActive="active"><button class="btn btn-sm btn-round btn-success my-2 my-sm-0">Add Campground</button></a>
