@@ -9,6 +9,8 @@ import * as firebase from 'firebase';
 })
 export class ProfileComponent implements OnInit {
 userEmail: any;
+username: any;
+photourl: any;
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
@@ -20,7 +22,9 @@ userEmail: any;
   checkUser() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        this.username = user.displayName;
         this.userEmail = user.email;
+        this.photourl = user.photoURL;
       }
     });
   }

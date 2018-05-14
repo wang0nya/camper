@@ -9,6 +9,7 @@ import * as firebase from 'firebase';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  user: any;
   registerSuccess: any;
   registerError: any;
   constructor(private authService: AuthService, private afAuth: AngularFireAuth) { }
@@ -18,17 +19,23 @@ export class RegisterComponent implements OnInit {
   onSubmit(formData) {
       console.log(formData.value);
       this.emailSignup(
+        formData.value.username,
         formData.value.email,
         formData.value.password
       );
   }
-  emailSignup(email: string, password: string) {
+  emailSignup(username: string, email: string, password: string) {
     this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then(value => {
+        this.user = firebase.auth().currentUser;
+        this.user.updateProfile({
+          displayName: username,
+          photoURL: 'https://thesocietypages.org/socimages/files/2009/05/nopic_192.gif'
+        });
         firebase
           .database()
-          .ref('/userProfiles')
-          .push({ email: email });
+          .ref('/users/profile')
+          .push({ email: email, username: username});
         this.sendEmailVerification();
         console.log('Success', value);
         // this.router.navigateByUrl('/campgrounds');

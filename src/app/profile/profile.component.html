@@ -1,8 +1,10 @@
 <app-navbar></app-navbar>
 <div class="container">
   <div class="row profile-content">
-    <div class="col-md-6">
+    <div class="col-md-6 text-center">
       <h3>Logged in as:</h3>
+      <img src="{{this.photourl}}" alt="profile avatar" class="img-circle">
+      <h5 [innerHtml]="username"></h5>
       <p [innerHtml]="userEmail"></p>
       <button class="btn btn-sm  btn-round btn-danger my-2 my-sm-0" (click)="logout()">Log Out</button>
     </div>
