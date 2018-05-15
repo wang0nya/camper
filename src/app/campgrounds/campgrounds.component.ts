@@ -23,5 +23,4 @@ export class CampgroundsComponent implements OnInit {
       this.camps = camps;
     });
   }
-
 }

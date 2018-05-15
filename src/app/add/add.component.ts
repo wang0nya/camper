@@ -13,6 +13,7 @@ import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 })
 export class AddComponent implements OnInit {
   private dbPath = '/camps';
+  key: any;
   postedBy: any;
   campsRef: AngularFireList<any> = null;
   camp: Camp = new Camp();
@@ -43,21 +44,22 @@ export class AddComponent implements OnInit {
     // this.createCamp(this.camp);
     this.camp = new Camp();
   }
-  createCamp(name: string, imageurl: string, description: string, postedBy: string): void {
-    this.campsRef.push({
-      name: name,
-      imageurl: imageurl,
-      description: description,
-      postedBy: this.postedBy
-    })
-      .then(newCamp => {
-      console.log('new camp created with key:', newCamp.key);
+  createCamp(key: any, name: string, imageurl: string, description: string, postedBy: string): void {
+    this.campsRef.push(null).then(( ref ) => {
+    ref.set({
+        key: ref.key,
+        name: name,
+        imageurl: imageurl,
+        description: description,
+        postedBy: this.postedBy
+      });
     });
   }
   onSubmit(formData) {
     this.submitted = true;
     this.save();
     this.createCamp(
+      formData.value.key,
       formData.value.name,
       formData.value.imageurl,
       formData.value.description,

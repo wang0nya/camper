@@ -3,7 +3,7 @@
   <div class="row">
     <div *ngFor="let camp of camps" class="campsContainer col-md-4 col-sm-6">
       <div class="camps">
-        <img src="{{camp.imageurl}}" class="img-fluid" routerLink="/campgrounds/:id"/>
+        <img src="{{camp.imageurl}}" class="img-fluid" routerLink="/campgrounds/{{camp.key}}"/>
         <div class="info">
           <h5>{{camp.name}}</h5>
           <p>{{camp.description}}</p>
