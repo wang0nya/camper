@@ -12,6 +12,7 @@ export class CampgroundDetailsComponent implements OnInit {
   private dbPath = '/camps';
   campDetails: AngularFireList<Camp> = null;
   details: any;
+  comment: any;
   public key: string;
 
   constructor(private router: Router, private db: AngularFireDatabase) {
@@ -26,5 +27,13 @@ export class CampgroundDetailsComponent implements OnInit {
 
   ngOnInit() {
     // this.getCampDetails(this.key);
+  }
+  submitComment(comment: string) {
+    console.log('comment submitted');
+  }
+  onSubmit(formData) {
+    this.submitComment(
+      formData.value.comment
+    );
   }
 }
