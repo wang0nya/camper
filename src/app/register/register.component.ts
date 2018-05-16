@@ -35,7 +35,13 @@ export class RegisterComponent implements OnInit {
         firebase
           .database()
           .ref('/users/profile')
-          .push({ email: email, username: username});
+          .push(null).then((newUser) =>
+          newUser.set({
+            uid: newUser.key,
+            email: email,
+            username: username
+          })
+        );
         this.sendEmailVerification();
         console.log('Success', value);
         // this.router.navigateByUrl('/campgrounds');
