@@ -12,6 +12,8 @@ import * as firebase from 'firebase';
 export class CampgroundDetailsComponent implements OnInit {
   private dbPath = '/camps';
   campDetails: AngularFireList<Camp> = null;
+  reactionsRef: AngularFireList<any> = null;
+  reactions: any;
   details: any;
   comment: any;
   public key: string;
@@ -21,6 +23,12 @@ export class CampgroundDetailsComponent implements OnInit {
 
   constructor(private router: Router, private db: AngularFireDatabase) {
       this.key = this.router.url.slice(13);
+    this.reactionsRef = db.list('camps/' + this.key + '/reactions');
+    this.reactionsRef.snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    }).subscribe(reactions => {
+      this.reactions = reactions;
+    });
     this.campDetails = db.list(this.dbPath, ref => ref.orderByChild('key').equalTo(this.key));
     this.campDetails.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -37,19 +45,22 @@ export class CampgroundDetailsComponent implements OnInit {
       if (user) {
         this.user = user;
         this.postedBy = user.displayName;
-        console.log('if true');
       } else {
         this.loginMessage = 'You need to be logged in to react';
-        console.log('else true');
       }
     });
   }
-  submitComment(comment: string) {
+  submitComment(comment: string, postedBy: string) {
+    this.reactionsRef.push({
+      comment: comment,
+      postedBy: postedBy
+    });
     console.log('comment submitted');
   }
   onSubmit(formData) {
     this.submitComment(
-      formData.value.comment
+      formData.value.comment,
+      formData.value.postedBy
     );
   }
 }
