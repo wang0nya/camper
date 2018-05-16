@@ -1,3 +1,4 @@
+///<reference path="../../../node_modules/angularfire2/database/interfaces.d.ts"/>
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
@@ -24,9 +25,9 @@ export class CampgroundDetailsComponent implements OnInit {
   user: any;
   loginMessage: any;
   formRating: any;
+  saved: boolean;
   constructor(private router: Router, private db: AngularFireDatabase) {
       this.key = this.router.url.slice(13);
-    this.savesRef = db.list('camps/' + this.key + '/saves');
     this.commentsRef = db.list('camps/' + this.key + '/comments');
     this.commentsRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -55,12 +56,9 @@ export class CampgroundDetailsComponent implements OnInit {
       }
     });
   }
-  setRating(formRating: number) {
+  setRating(formRating) {
     this.ratingsRef = this.db.list('camps/' + this.key + '/ratings/' + this.postedBy);
-    this.ratingsRef.push({
-      ratedBy: this.postedBy,
-      rating: this.formRating
-    });
+    this.ratingsRef.set('formRating', formRating);
   }
   submitComment(comment: string, postedBy: string) {
     this.commentsRef.push({
@@ -70,10 +68,10 @@ export class CampgroundDetailsComponent implements OnInit {
     console.log('comment submitted');
   }
   save() {
-    this.savesRef.push({
-      savedBy: this.savedBy
-    });
-    console.log(this.key + 'saved by' + this.savedBy);
+    this.savesRef = this.db.list('camps/' + this.key + '/saves/' + this.postedBy);
+      this.saved = !this.saved;
+      this.savesRef.set(this.key, this.saved);
+    console.log('saved: ', this.saved);
   }
   onSubmit(formData) {
     this.submitComment(
