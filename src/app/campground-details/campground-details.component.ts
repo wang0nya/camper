@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import {Camp} from '../camp';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-campground-details',
@@ -14,6 +15,9 @@ export class CampgroundDetailsComponent implements OnInit {
   details: any;
   comment: any;
   public key: string;
+  postedBy: any;
+  user: any;
+  loginMessage: any;
 
   constructor(private router: Router, private db: AngularFireDatabase) {
       this.key = this.router.url.slice(13);
@@ -26,7 +30,19 @@ export class CampgroundDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getCampDetails(this.key);
+    this.checkUser();
+  }
+  checkUser() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.postedBy = user.displayName;
+        console.log('if true');
+      } else {
+        this.user = user;
+        this.loginMessage = 'You need to be logged in to react';
+        console.log('else true');
+      }
+    });
   }
   submitComment(comment: string) {
     console.log('comment submitted');
