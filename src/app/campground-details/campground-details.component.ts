@@ -13,16 +13,19 @@ export class CampgroundDetailsComponent implements OnInit {
   private dbPath = '/camps';
   campDetails: AngularFireList<Camp> = null;
   reactionsRef: AngularFireList<any> = null;
+  savesRef: AngularFireList<any> = null;
   reactions: any;
   details: any;
   comment: any;
   public key: string;
   postedBy: any;
+  savedBy: any;
   user: any;
   loginMessage: any;
 
   constructor(private router: Router, private db: AngularFireDatabase) {
       this.key = this.router.url.slice(13);
+    this.savesRef = db.list('camps/' + this.key + '/saves');
     this.reactionsRef = db.list('camps/' + this.key + '/reactions');
     this.reactionsRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -45,6 +48,7 @@ export class CampgroundDetailsComponent implements OnInit {
       if (user) {
         this.user = user;
         this.postedBy = user.displayName;
+        this.savedBy = user.email;
       } else {
         this.loginMessage = 'You need to be logged in to react';
       }
@@ -56,6 +60,12 @@ export class CampgroundDetailsComponent implements OnInit {
       postedBy: postedBy
     });
     console.log('comment submitted');
+  }
+  save() {
+    this.savesRef.push({
+      savedBy: this.savedBy
+    });
+    console.log(this.key + 'saved by' + this.savedBy);
   }
   onSubmit(formData) {
     this.submitComment(

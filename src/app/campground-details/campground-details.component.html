@@ -17,6 +17,7 @@
       <h3 class="text-center">Reactions</h3>
       <div *ngIf="this.loginMessage" class="alert alert-warning alert-dismissible fade show" [innerHtml]="loginMessage"></div>
       <div class="reactions text-center" *ngIf="user">
+        <button type="button" class="btn btn-primary btn-round" (click)="save()"> <i class="fas fa-heart"></i> save </button>
         <button type="button" class="btn btn-info btn-round btn-just-icon"><i class="far fa-thumbs-up"></i></button>
         <button type="button" class="btn btn-default btn-round btn-just-icon"><i class="far fa-thumbs-down"></i></button>
       </div>
