@@ -12,9 +12,10 @@ import * as firebase from 'firebase';
 export class CampgroundDetailsComponent implements OnInit {
   private dbPath = '/camps';
   campDetails: AngularFireList<Camp> = null;
-  reactionsRef: AngularFireList<any> = null;
+  commentsRef: AngularFireList<any> = null;
+  ratingsRef: AngularFireList<any> = null;
   savesRef: AngularFireList<any> = null;
-  reactions: any;
+  comments: any;
   details: any;
   comment: any;
   public key: string;
@@ -22,15 +23,15 @@ export class CampgroundDetailsComponent implements OnInit {
   savedBy: any;
   user: any;
   loginMessage: any;
-
+  formRating: any;
   constructor(private router: Router, private db: AngularFireDatabase) {
       this.key = this.router.url.slice(13);
     this.savesRef = db.list('camps/' + this.key + '/saves');
-    this.reactionsRef = db.list('camps/' + this.key + '/reactions');
-    this.reactionsRef.snapshotChanges().map(changes => {
+    this.commentsRef = db.list('camps/' + this.key + '/comments');
+    this.commentsRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    }).subscribe(reactions => {
-      this.reactions = reactions;
+    }).subscribe(comments => {
+      this.comments = comments;
     });
     this.campDetails = db.list(this.dbPath, ref => ref.orderByChild('key').equalTo(this.key));
     this.campDetails.snapshotChanges().map(changes => {
@@ -54,8 +55,15 @@ export class CampgroundDetailsComponent implements OnInit {
       }
     });
   }
+  setRating(formRating: number) {
+    this.ratingsRef = this.db.list('camps/' + this.key + '/ratings/' + this.postedBy);
+    this.ratingsRef.push({
+      ratedBy: this.postedBy,
+      rating: this.formRating
+    });
+  }
   submitComment(comment: string, postedBy: string) {
-    this.reactionsRef.push({
+    this.commentsRef.push({
       comment: comment,
       postedBy: postedBy
     });

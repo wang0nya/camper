@@ -27,6 +27,8 @@ import { InterceptComponent } from './intercept/intercept.component';
 
 import {CampsService} from '../services/camps.service';
 
+import { BarRatingModule } from 'ngx-bar-rating';
+
 const appRoutes: Routes = [
   { path: 'campgrounds/:id', component: CampgroundDetailsComponent },
   {
@@ -103,13 +105,14 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
     FormsModule,
+    BarRatingModule,
     AngularFireAuthModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [AuthService,CampsService],
+  providers: [AuthService, CampsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

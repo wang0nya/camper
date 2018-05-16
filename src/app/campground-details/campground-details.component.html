@@ -18,11 +18,19 @@
       <div *ngIf="this.loginMessage" class="alert alert-warning alert-dismissible fade show" [innerHtml]="loginMessage"></div>
       <div class="reactions text-center" *ngIf="user">
         <button type="button" class="btn btn-primary btn-round" (click)="save()"> <i class="fas fa-heart"></i> save </button>
-        <button type="button" class="btn btn-info btn-round btn-just-icon"><i class="far fa-thumbs-up"></i></button>
-        <button type="button" class="btn btn-default btn-round btn-just-icon"><i class="far fa-thumbs-down"></i></button>
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <form #form="ngForm">
+              <bar-rating name="rating" [(ngModel)]="formRating" [max]="10" (rateChange)="setRating(formRating)"></bar-rating>
+            </form>
+          </div>
+        </div>
+        <p>Your rating: {{ formRating }}</p>
+        <!--<button type="button" class="btn btn-info btn-round btn-just-icon"><i class="far fa-thumbs-up"></i></button>-->
+        <!--<button type="button" class="btn btn-default btn-round btn-just-icon"><i class="far fa-thumbs-down"></i></button>-->
       </div>
-      <div *ngFor="let reaction of reactions" class="reactionsContainer">
-        <p><strong>{{reaction.postedBy}}</strong>  <span>{{reaction.comment}}</span></p>
+      <div *ngFor="let comment of comments" class="reactionsContainer">
+        <p><strong>{{comment.postedBy}}</strong>  <span>{{comment.comment}}</span></p>
       </div>
       <div class="comments" *ngIf="user">
         <form #formData='ngForm' (ngSubmit)='onSubmit(formData)'>
