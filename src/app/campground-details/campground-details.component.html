@@ -16,22 +16,22 @@
     <div class="col-md-6 col-xs-12">
       <h3 class="text-center">Reactions</h3>
       <div *ngIf="this.loginMessage" class="alert alert-warning alert-dismissible fade show" [innerHtml]="loginMessage"></div>
-      <div class="reactions text-center">
-        <button type="button" class="btn btn-info btn-round btn-just-icon" [disabled]="!user"><i class="far fa-thumbs-up"></i></button>
-        <button type="button" class="btn btn-default btn-round btn-just-icon" [disabled]="!user"><i class="far fa-thumbs-down"></i></button>
+      <div class="reactions text-center" *ngIf="user">
+        <button type="button" class="btn btn-info btn-round btn-just-icon"><i class="far fa-thumbs-up"></i></button>
+        <button type="button" class="btn btn-default btn-round btn-just-icon"><i class="far fa-thumbs-down"></i></button>
       </div>
-      <div class="comments">
+      <div class="comments" *ngIf="user">
         <form #formData='ngForm' (ngSubmit)='onSubmit(formData)'>
           <div class="form-group">
             <label for="comment"></label> <textarea class="form-control" rows="4"
                                                             placeholder="Your thoughts here..." id="comment" required [(ngModel)]="comment"
-                                                            name="comment" [disabled]="!user"></textarea>
+                                                            name="comment"></textarea>
           </div>
           <div class="form-group" hidden>
             <label for="poster"></label> <input id="poster" [(ngModel)]="postedBy"
                                                 name="postedBy">
           </div>
-          <button type="submit" class="btn btn-success btn-round" style="float: right;" [disabled]="!user">Comment</button>
+          <button type="submit" class="btn btn-success btn-round" style="float: right;">Comment</button>
         </form>
       </div>
     </div>

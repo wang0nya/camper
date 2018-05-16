@@ -35,10 +35,10 @@ export class CampgroundDetailsComponent implements OnInit {
   checkUser() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        this.user = user;
         this.postedBy = user.displayName;
         console.log('if true');
       } else {
-        this.user = user;
         this.loginMessage = 'You need to be logged in to react';
         console.log('else true');
       }
