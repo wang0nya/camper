@@ -16,6 +16,7 @@ export class CampgroundDetailsComponent implements OnInit {
   commentsRef: AngularFireList<any> = null;
   ratingsRef: AngularFireList<any> = null;
   savesRef: AngularFireList<any> = null;
+  uid: any;
   comments: any;
   details: any;
   comment: any;
@@ -51,24 +52,26 @@ export class CampgroundDetailsComponent implements OnInit {
         this.user = user;
         this.postedBy = user.displayName;
         this.savedBy = user.email;
+        this.uid = user.uid;
       } else {
         this.loginMessage = 'You need to be logged in to react';
       }
     });
   }
   setRating(formRating) {
-    this.ratingsRef = this.db.list('camps/' + this.key + '/ratings/' + this.postedBy);
+    this.ratingsRef = this.db.list('camps/' + this.key + '/ratings/' + this.uid);
     this.ratingsRef.set('formRating', formRating);
   }
   submitComment(comment: string, postedBy: string) {
     this.commentsRef.push({
       comment: comment,
-      postedBy: postedBy
+      postedBy: postedBy,
+      uid: this.uid
     });
     console.log('comment submitted');
   }
   save() {
-    this.savesRef = this.db.list('camps/' + this.key + '/saves/' + this.postedBy);
+    this.savesRef = this.db.list('camps/' + this.key + '/saves/' + this.uid);
       this.saved = !this.saved;
       this.savesRef.set(this.key, this.saved);
     console.log('saved: ', this.saved);
