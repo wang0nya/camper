@@ -12,6 +12,9 @@ export class RegisterComponent implements OnInit {
   user: any;
   registerSuccess: any;
   registerError: any;
+  username: any;
+  email: any;
+  password: any;
   constructor(private authService: AuthService, private afAuth: AngularFireAuth) { }
 
   ngOnInit() {

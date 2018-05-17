@@ -18,6 +18,9 @@ export class AddComponent implements OnInit {
   campsRef: AngularFireList<any> = null;
   camp: Camp = new Camp();
   submitted = false;
+  name: any;
+  imageurl: any;
+  description: any;
   constructor(private authService: AuthService, private router: Router, private db: AngularFireDatabase) {
     this.campsRef = db.list(this.dbPath);
   }
