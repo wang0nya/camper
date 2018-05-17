@@ -1,35 +1,20 @@
-<div class="mainNav" xmlns="">
-  <nav class="navbar navbar-expand-md navbar-light fixed-top">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-      <span class="navbar-toggler-icon"></span>
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="#"><img src="../../assets/img/logo1.png" alt="camper logo" class="img-responsive"></a>
-    <div class="collapse navbar-collapse" id="navbar-menu">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/campgrounds" routerLinkActive="active">Campgrounds <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/feed" routerLinkActive="active">Feed <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/top-rated" routerLinkActive="active">Top Rated</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/profile" routerLinkActive="active" *ngIf="user">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/add" routerLinkActive="active"><button class="btn btn-sm btn-round btn-success my-2 my-sm-0" *ngIf="user">Add Campground</button></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login" routerLinkActive="active"><button class="btn btn-sm btn-round btn-info my-2 my-sm-0" *ngIf="!user">Login</button></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/register" routerLinkActive="active"><button class="btn btn-sm btn-round btn-warning my-2 my-sm-0" *ngIf="!user">Register</button></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<div class="container">
+  <div class="topnav" id="myTopnav">
+    <!--<li class="nav-item">-->
+    <!--<a class="nav-link" routerLink="/feed" routerLinkActive="active">Feed <span class="sr-only">(current)</span></a>-->
+    <!--</li>-->
+    <!--<li class="nav-item">-->
+    <!--<a class="nav-link" routerLink="/top-rated" routerLinkActive="active">Top Rated</a>-->
+    <!--</li>-->
+    <a routerLink="/welcome">Home</a>
+    <a routerLink="/campgrounds" routerLinkActive="active">Campgrounds <span class="sr-only">(current)</span></a>
+    <a class="nav-link" routerLink="/profile" routerLinkActive="active" *ngIf="user">Profile</a>
+    <a class="nav-link" routerLink="/add" routerLinkActive="active"><button class="btn btn-sm btn-round btn-success my-2 my-sm-0" *ngIf="user">Add Campground</button></a>
+    <a class="nav-link" routerLink="/login" routerLinkActive="active"><button class="btn btn-sm btn-round btn-info my-2 my-sm-0" *ngIf="!user">Login</button></a>
+    <a class="nav-link" routerLink="/register" routerLinkActive="active"><button class="btn btn-sm btn-round btn-warning my-2 my-sm-0" *ngIf="!user">Register</button></a>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
 </div>

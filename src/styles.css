@@ -38,3 +38,9 @@
     opacity: 1;
   }
 }
+.caperBrand {
+  font-family: 'Gochi Hand', cursive;
+  margin-bottom: 40px;
+  color: #dc3545;
+  text-align: center;
+}

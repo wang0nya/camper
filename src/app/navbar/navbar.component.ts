@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
     const body = <HTMLDivElement> document.body;
     const script = document.createElement('script');
     script.innerHTML = '';
-    script.src = '../../assets/js/paper-kit.js';
+    script.src = '../../assets/js/main.js';
     script.async = true;
     script.defer = true;
     body.appendChild(script);

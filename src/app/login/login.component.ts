@@ -22,7 +22,6 @@ confirm: any;
   }
 
   onSubmit(formData) {
-    console.log(formData.value);
     this.login(
       formData.value.email,
       formData.value.password
@@ -30,17 +29,8 @@ confirm: any;
   }
   login(email: string, password: string) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .then(
-        firebase.auth().onAuthStateChanged((user) => {
-          if (user.emailVerified) {
-            console.log(user.emailVerified);
-            this.router.navigateByUrl('/campgrounds');
-          } else {
-            this.confirm = 'Looks like you have not verified your email yet. Take a look at your email for a verification email we sent.';
-            console.log('look at your mail', user.emailVerified);
-          }
-        })
-      )
+      .then(() =>
+        this.router.navigateByUrl('/campgrounds'))
       .catch(err => {
         console.log('Something went wrong: ', err.message);
         this.error = err.message;
