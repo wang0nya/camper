@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import {Camp} from '../camp';
 import * as firebase from 'firebase';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-campground-details',
@@ -27,6 +28,7 @@ export class CampgroundDetailsComponent implements OnInit {
   loginMessage: any;
   formRating: any;
   saved: boolean;
+  userRating: Observable<any>;
   constructor(private router: Router, private db: AngularFireDatabase) {
       this.key = this.router.url.slice(13);
     this.commentsRef = db.list('camps/' + this.key + '/comments');
@@ -53,6 +55,7 @@ export class CampgroundDetailsComponent implements OnInit {
         this.postedBy = user.displayName;
         this.savedBy = user.email;
         this.uid = user.uid;
+        this.userRating = this.db.object('camps/' + this.key + '/ratings/' + this.uid).valueChanges();
       } else {
         this.loginMessage = 'You need to be logged in to react';
       }

@@ -21,7 +21,7 @@
         <div class="row">
           <div class="col-md-6 offset-md-3">
             <form #form="ngForm">
-              <bar-rating name="rating" [(ngModel)]="formRating" [max]="10" (rateChange)="setRating(formRating)"></bar-rating>
+              <bar-rating [rate]="(userRating | async)?.formRating" name="rating" [(ngModel)]="formRating" [max]="10" (rateChange)="setRating(formRating)"></bar-rating>
             </form>
           </div>
         </div>
