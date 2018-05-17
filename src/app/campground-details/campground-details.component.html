@@ -2,9 +2,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <div *ngFor="let detail of details" class="detailsContainer">
+      <div *ngFor="let detail of details" class="detailsContainer fadein">
         <div class="details">
-          <img src="{{detail.imageurl}}" class="img-fluid" />
+          <img src="{{detail.imageurl}}" class="img-fluid" alt="campground image" height="auto" width="auto"/>
           <div class="info">
             <h5>{{detail.name}}</h5>
             <p>{{detail.description}}</p>
